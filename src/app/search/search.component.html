@@ -1,0 +1,43 @@
+<div class="card">
+	<div class="card card-container">
+		<form
+			name="form"
+			(ngSubmit)="f.form.valid && onSubmit()"
+			#f="ngForm"
+			novalidate
+		>
+			<div class="form-group">
+				<label for="tag">Tag</label>
+				<input
+					type="text"
+					class="form-control"
+					name="tag"
+					[(ngModel)]="form.tag"
+					required
+					minlength="0"
+					maxlength="50"
+					#tag="ngModel"
+					[ngClass]="{ 'is-invalid': f.submitted && tag.errors }"
+				/>
+				<div class="invalid-feedback" *ngIf="tag.errors && f.submitted">
+					<div *ngIf="tag.errors['required']">Tag is required</div>
+					<div *ngIf="tag.errors['minlength']">
+						Tag must be at least 0 characters
+					</div>
+					<div *ngIf="tag.errors['maxlength']">
+						Tag must be at most 50 characters
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block">Search Songs</button>
+			</div>
+		</form>
+
+		<ul class="list-group" *ngIf="songArray">
+			<a class="list-group-item list-group-item-action" [class.active]="active === i" (click)="onFavourite(song.id, i)" *ngFor="let song of songArray; let i = index;">
+                {{ song.name }} - {{ song.artist.name }}    
+            </a>
+        </ul>
+	</div>
+</div>

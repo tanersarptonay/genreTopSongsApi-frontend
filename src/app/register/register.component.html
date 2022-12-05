@@ -1,0 +1,15 @@
+<p-card header="Create Influencer" [style]="{width: '50%'}"
+    class="flex align-items-center justify-content-center font-bold text-blue-500 m-2 shadow-3">
+    <ng-template pTemplate="content">
+        <div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <formly-form class=" my-3 card flex flex-column flex align-items-center" [model]="model"
+                    [fields]="fields" [form]="form">
+
+      
+                </formly-form>
+								<button class="my-3" [disabled]="form.invalid" pButton type="submit" label="Submit"></button>
+            </form>
+        </div>
+    </ng-template>
+</p-card>
